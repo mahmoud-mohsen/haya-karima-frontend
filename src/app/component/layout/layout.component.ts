@@ -26,7 +26,7 @@ export class LayoutComponent implements OnInit {
     if(roles){
       permissions = roles;
     }
-    
+
     this.permissionsService.loadPermissions(permissions);
 
   }
@@ -38,7 +38,7 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    window.location.href=`home`;
+    window.location.href=`/home`;
   }
 
   openAboutPage(menueNumber) {
