@@ -18,18 +18,15 @@ const routes: Routes = [
   { path: 'cases', component: CasesListComponent, canActivate: [AuthGuard] },
   { path: 'campaigns', component: CampaignListComponent, canActivate: [AuthGuard] },
 
-
   { path: 'registration', component: RegistrationComponent },
   { path: 'case/new', component: NewPersonComponent, canActivate: [AuthGuard] },
   { path: 'campaign/new', component: NewCampaignComponent, canActivate: [AuthGuard] },
   { path: 'case/profile/:id', component: PersonProfileComponent, pathMatch: 'full' },
   { path: 'campaign/profile/:id', component: CampaignProfileComponent, pathMatch: 'full' },
-
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
