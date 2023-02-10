@@ -547,20 +547,20 @@
                         name="cSameFatherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">له نفس الاب ؟</label>
                     </div>
-                    <div *ngIf="(pRelationExistPerson!=null && pRelationExistPerson.value === 'mother') "
+                    <div *ngIf=" pRelationExistPerson!=null && pRelationExistPerson.value === 'mother' && addExistPerson"
                       class="mb-3 form-check">
                       <input [(ngModel)]="sameFatherForExistPerson" #pSameFatherForExistPerson="ngModel"
                         name="cSameFatherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">الزوج هو الاب ؟</label>
                     </div>
-                    <div *ngIf="(pRelationExistPerson!=null && pRelationExistPerson.value === 'father') "
+                    <div *ngIf="pRelationExistPerson!=null && pRelationExistPerson.value === 'father' && addExistPerson "
                       class="mb-3 form-check">
                       <input [(ngModel)]="sameMotherForExistPerson" #pSameMotherForExistPerson="ngModel"
                         name="cSameMotherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">الزوجة هي الام ؟</label>
                     </div>
                     <div
-                      *ngIf="pRelationExistPerson!=null && (pRelationExistPerson.value === 'mother'||pRelationExistPerson.value === 'father') "
+                      *ngIf="pRelationExistPerson!=null && (pRelationExistPerson.value === 'mother'||pRelationExistPerson.value === 'father') && addExistPerson"
                       class="mb-3 form-check">
                       <input [(ngModel)]="sameSiblingForExistPerson" #pSameSiblingForExistPerson="ngModel"
                         name="cSameSiblingForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
