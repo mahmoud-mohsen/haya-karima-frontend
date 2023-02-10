@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class BackendService {
 
-  baseUrl: string = 'http://localhost:8080/';
+  //baseUrl: string = 'http://localhost:8080/';
+  baseUrl: string = 'https://haya-karima.herokuapp.com/';
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
