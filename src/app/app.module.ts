@@ -7,7 +7,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './component/layout/layout.component';
@@ -17,7 +16,6 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './component/registration/registration.component';
@@ -47,12 +45,10 @@ import { CampaignProfileComponent } from './component/campaign-profile/campaign-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgxPermissionsModule.forRoot(),
-    MDBBootstrapModule.forRoot(),
     MatDatepickerModule,
     MatFormFieldModule,
     MatDatepickerModule,
