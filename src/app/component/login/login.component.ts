@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     let url = `login`;
     this.backendService.post(param, url).subscribe((response: any) => {
       localStorage.setItem('token', response.access_token);
-      window.location.href=`/home`;
+      this.router.navigate(['/home']);
     });
   }
 }

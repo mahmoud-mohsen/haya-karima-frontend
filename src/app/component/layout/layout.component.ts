@@ -14,16 +14,16 @@ import { NgxPermissionsService } from 'ngx-permissions';
 export class LayoutComponent implements OnInit {
 
   constructor(private router: Router, private permissionsService: NgxPermissionsService, private backendService: BackendService, private authService: AuthService) {
-   }
+  }
 
   ngOnInit(): void {
-    if(!this.isAuthenticated()){
+    if (!this.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     }
 
-    let permissions =[''];
-    let roles=this.authService.getRoles();
-    if(roles){
+    let permissions = [''];
+    let roles = this.authService.getRoles();
+    if (roles) {
       permissions = roles;
     }
 
@@ -38,7 +38,7 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    window.location.href=`/home`;
+    this.router.navigate(['/home']);
   }
 
   openAboutPage(menueNumber) {
