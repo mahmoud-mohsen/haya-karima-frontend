@@ -1,0 +1,812 @@
+<app-layout>
+  <ng-container class="container-body">
+
+    <section style="background-color: #eee;">
+      <div *ngIf="caseProfile.id!=null" class="container py-5">
+        <div class="row">
+          <div class="col">
+            <div class="dropdown mb-3">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                الخيارات
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalCenteredScrollable">اضافة فرد عائلة</a></li>
+
+                <li><a class="dropdown-item" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalCenteredScrollable2">اضافة الى مبادرة</a></li>
+
+                <li><a class="dropdown-item" (click)="showEdit()">تعديل</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item bg-danger" (click)="deleteCase()">حذف</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">الرقم التسلسلي</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.id" #cpId="ngModel" name="caseId" [disabled]="true"
+                      class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">الاسم</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.name" #cpName="ngModel" name="caseName" [disabled]="!editView"
+                      class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">العنوان</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.address" #cpAddress="ngModel" name="caseAddress"
+                      [disabled]="!editView" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">رقم الهاتف</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.phoneNumber" #cpPhoneNumber="ngModel" name="casePhoneNumber"
+                      [disabled]="!editView" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">النوع</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <select [(ngModel)]="caseProfile.gender" #cpGender="ngModel" name="caseGender"
+                      [disabled]="!editView" class="form-select form-select " required aria-label="النوع">
+                      <option selected>اختر النوع</option>
+                      <option value="MALE">ذكر</option>
+                      <option value="FEMALE">انثي</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">تاريخ الميلاد</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [ngModel]="caseProfile.dateOfBirth|date:'dd/MM/yyyy'" #cpDateOfBirth="ngModel"
+                      name="caseDateOfBirth" [disabled]="true" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">العمر</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.age" #cpAge="ngModel" name="caseAge" [disabled]="true"
+                      class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">الرقم القومي</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.code" #cpCode="ngModel" name="caseCode" [disabled]="true"
+                      class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">المرحلة التعليمة</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.educationLevel" #cpEducationLevel="ngModel"
+                      name="caseEducationLevel" [disabled]="!editView" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">الحالة الاجتماعية</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.socialStatus" #cpSocialStatus="ngModel" name="caseSocialStatus"
+                      [disabled]="!editView" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">تاريخ الاضافة</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [ngModel]="caseProfile.creationDate|date:'dd/MM/yyyy'" #cpCreationDate="ngModel"
+                      name="caseCreationDate" [disabled]="true" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">المضيف</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <input [(ngModel)]="caseProfile.addedUser" #cpAddedUser="ngModel" name="caseAddedUser"
+                      [disabled]="true" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">ملحوظات</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <textarea [(ngModel)]="caseProfile.note" #cpNote="ngModel" name="caseNote" [disabled]="!editView"
+                      class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="row mt-3" [hidden]="!editView">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+                      <button class="btn btn-primary btn-block" type="submit" (click)="saveEdit()">حفظ
+                        التعديلات</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card mb-3">
+              <div class="card-body text-center">
+                <h3 class="my-3">عدد افراد الاسرة</h3>
+                <p class="text-muted mb-1">{{familyCount}}</p>
+                <h3 class="my-3">عدد المبادراة المستفيد منها</h3>
+                <p class="text-muted mb-1">{{campaignCount}}</p>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <div class="card mb-4 mb-md-0">
+                  <div class="card-body ">
+                    <h2 class="mb-4 text-center">افراد العائلة</h2>
+                    <div>
+                      <div>
+                        <div class="bd-example">
+                          <div class="accordion" id="accordionExample">
+                            <div *ngIf="caseProfile && caseProfile.father" class="accordion-item">
+                              <h4 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  الاب
+                                </button>
+                              </h4>
+                              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="table table-striped table-bordered table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="th-sm">الاسم</th>
+                                        <th scope="th-sm">العمر</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>{{caseProfile.father.name}}</td>
+                                        <td>{{getAge(caseProfile.father.dateOfBirth)}}</td>
+                                        <td>
+                                          <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item"
+                                                (click)="openCaseProfile(caseProfile.father.id)">عرض</a></li>
+                                            <li>
+                                              <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item bg-danger"
+                                                (click)="removeFatherRelation(caseProfile.father)">حذف</a></li>
+                                          </ul>
+                                        </td>
+
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="caseProfile && caseProfile.mother" class="accordion-item">
+                              <h4 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  الام
+                                </button>
+                              </h4>
+                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+
+                                  <table class="table table-striped table-bordered table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">العمر</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>{{caseProfile.mother.name}}</td>
+                                        <td>{{getAge(caseProfile.mother.dateOfBirth)}}</td>
+                                        <td>
+                                          <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item"
+                                                (click)="openCaseProfile(caseProfile.mother.id)">عرض</a></li>
+                                            <li>
+                                              <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item bg-danger"
+                                                (click)="removeMotherRelation(caseProfile.mother)">حذف</a></li>
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="caseProfile && caseProfile.husband" class="accordion-item">
+                              <h4 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                  الزوج
+                                </button>
+                              </h4>
+                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="table table-striped table-bordered table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">العمر</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>{{caseProfile.husband.name}}</td>
+                                        <td>{{getAge(caseProfile.husband.dateOfBirth)}}</td>
+                                        <td>
+                                          <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item"
+                                                (click)="openCaseProfile(caseProfile.husband.id)">عرض</a></li>
+                                            <li>
+                                              <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item bg-danger"
+                                                (click)="removeHusbandRelation(caseProfile.husband)">حذف</a></li>
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="caseProfile && caseProfile.wifes && caseProfile.wifes.length!=0"
+                              class="accordion-item">
+                              <h4 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  الزوجة
+                                </button>
+                              </h4>
+                              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="table table-striped table-bordered table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">العمر</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let wife of caseProfile.wifes;">
+                                        <td>{{wife.name}}</td>
+                                        <td>{{getAge(wife.dateOfBirth)}}</td>
+                                        <td>
+                                          <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" (click)="openCaseProfile(wife.id)">عرض</a></li>
+                                            <li>
+                                              <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item bg-danger"
+                                                (click)="removeWifeRelation(wife)">حذف</a></li>
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="caseProfile && caseProfile.childs && caseProfile.childs.length!=0"
+                              class="accordion-item">
+                              <h4 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  الابناء
+                                </button>
+                              </h4>
+                              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="table table-striped table-bordered table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">العمر</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let child of caseProfile.childs;">
+                                        <td>{{child.name}}</td>
+                                        <td>{{getAge(child.dateOfBirth)}}</td>
+                                        <td>
+                                          <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" (click)="openCaseProfile(child.id)">عرض</a>
+                                            </li>
+                                            <li>
+                                              <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item bg-danger"
+                                                (click)="removeChildRelation(child)">حذف</a></li>
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="caseProfile && caseProfile.siblings && caseProfile.siblings.length!=0"
+                              class="accordion-item">
+                              <h4 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  الاخوة-الاخوات
+                                </button>
+                              </h4>
+                              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="table table-striped table-bordered table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">العمر</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let sibling of caseProfile.siblings;">
+                                        <td>{{sibling.name}}</td>
+                                        <td>{{getAge(sibling.dateOfBirth)}}</td>
+                                        <td>
+                                          <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" (click)="openCaseProfile(sibling.id)">عرض</a>
+                                            </li>
+                                            <li>
+                                              <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item bg-danger"
+                                                (click)="removeSiblingRelation(sibling)">حذف</a></li>
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <div class="card mb-4 mb-md-0">
+                  <div class="card-body ">
+                    <h2 class="mb-4 text-center">المبادرات</h2>
+                    <div *ngIf="caseProfile && caseProfile.campaigns && caseProfile.campaigns.length!=0"
+                      class="bd-example">
+                      <div class="accordion text-center" id="accordionExample">
+
+                        <table class="table table-striped table-bordered table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col">الاسم</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let campaign of caseProfile.campaigns;">
+                              <td>{{campaign.name}}</td>
+                              <td class="col-md-1">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <li><a class="dropdown-item" (click)="openCampaignProfile(campaign.id)">عرض</a>
+                                  </li>
+                                  <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
+                                  <li><a class="dropdown-item bg-danger"
+                                      (click)="removeCampaignFromCase(campaign.id)">حذف</a></li>
+                                </ul>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1"
+        aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content ">
+
+
+
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+            </div>
+            <div class="modal-body" id="myGroup">
+              <div class="row mb-4">
+                <div class="col-6">
+                  <button (click)="changeAddingPersonApproach(true,false)" class="btn btn btn-primary dropdown">فرد
+                    جديد</button>
+                </div>
+                <div class="col-2">
+                  <button (click)="changeAddingPersonApproach(false,true)" class="btn btn btn-primary dropdown">فرد
+                    موجود</button>
+                </div>
+              </div>
+
+              <div class="person-group">
+                <div *ngIf="addExistPerson" id="multiCollapse1">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="cRelation">صلة القرابة</span>
+                    <select required [(ngModel)]="relationExistPerson" #pRelationExistPerson="ngModel"
+                      name="relationExistPerson" id="relationDropDownList" class="form-select text-center"
+                      aria-label="Default select example">
+                      <option value="father">اب</option>
+                      <option value="mother">ام</option>
+                      <option *ngIf="caseProfile && caseProfile.gender=='FEMALE'" value="husband">زوج</option>
+                      <option *ngIf="caseProfile && caseProfile.gender=='MALE'" value="wife">زوجة</option>
+                      <option value="child">ابن - ابنة</option>
+                      <option value="sibling">اخ - اخت</option>
+                    </select>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div *ngIf="(pRelationExistPerson!=null && pRelationExistPerson.value === 'sibling') "
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameFatherForExistPerson" #pSameFatherForExistPerson="ngModel"
+                        name="cSameFatherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">له نفس الاب ؟</label>
+                    </div>
+                    <div *ngIf="(pRelationExistPerson!=null && pRelationExistPerson.value === 'mother') "
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameFatherForExistPerson" #pSameFatherForExistPerson="ngModel"
+                        name="cSameFatherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">الزوج هو الاب ؟</label>
+                    </div>
+                    <div *ngIf="(pRelationExistPerson!=null && pRelationExistPerson.value === 'father') "
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameMotherForExistPerson" #pSameMotherForExistPerson="ngModel"
+                        name="cSameMotherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">الزوجة هي الام ؟</label>
+                    </div>
+                    <div
+                      *ngIf="pRelationExistPerson!=null && (pRelationExistPerson.value === 'mother'||pRelationExistPerson.value === 'father') "
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameSiblingForExistPerson" #pSameSiblingForExistPerson="ngModel"
+                        name="cSameSiblingForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">الابناء هم نفس الاخوة ؟</label>
+                    </div>
+                    <div *ngIf="(pRelationExistPerson!=null && pRelationExistPerson.value === 'sibling') "
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameMotherForExistPerson" #pSameMotherForExistPerson="ngModel"
+                        name="cSameMotherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">له نفس الام ؟</label>
+                    </div>
+                    <div
+                      *ngIf="pRelationExistPerson!=null && pRelationExistPerson.value === 'child' && caseProfile.gender=== 'FEMALE'"
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameHusbandForExistPerson" #pSameHusbandForExistPerson="ngModel"
+                        name="cSameHusbandForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">الاب هو نفس الزوج ؟</label>
+                    </div>
+                    <div
+                      *ngIf="pRelationExistPerson!=null && pRelationExistPerson.value === 'child' && caseProfile.gender=== 'MALE'"
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameWifeForExistPerson" #pSameWifeForExistPerson="ngModel"
+                        name="cSameWifeForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">الام هي نفس الزوجة ؟</label>
+                    </div>
+                    <div
+                      *ngIf="pRelationExistPerson!=null && (pRelationExistPerson.value === 'sibling' || pRelationExistPerson.value === 'child' )"
+                      class="mb-3 form-check">
+                      <input [(ngModel)]="sameSiblingForExistPerson" #pSameSiblingForExistPerson="ngModel"
+                        name="cSameSiblingForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">له نفس الاخوة ؟</label>
+                    </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input [(ngModel)]="codeNeeded" #cCodeNeeded="ngModel" name="codeNeeded" type="search"
+                      class="form-control rounded" placeholder="ادخل الرقم القومي الذي تبحث عنه" aria-label="Search"
+                      aria-describedby="search-addon" />
+                    <button (click)="getPersonByCode()" type="button" class="btn btn-outline-primary">بحث</button>
+                  </div>
+                  <div>
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+                      width="100%">
+                      <thead>
+                        <tr class="text-center">
+                          <th class="th-sm">التسلسل</th>
+                          <th class="th-sm">الاسم</th>
+                          <th class="th-sm">الرقم القومي</th>
+                          <th class="th-sm">العمر</th>
+                          <th class="th-sm">رقم الهاتف</th>
+                          <th class="th-sm">العنوان</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr (click)="openCaseProfile(personByCode.id)" class="text-center">
+                          <td>{{personByCode.id}}</td>
+                          <td>{{personByCode.name}}</td>
+                          <td>{{personByCode.code}}</td>
+                          <td>{{getAge(personByCode.dateOfBirth)}}</td>
+                          <td>{{personByCode.phoneNumber}}</td>
+                          <td>{{personByCode.address}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div *ngIf="addNewPerson" id="multiCollapse2">
+                  <form>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="cRelation">صلة القرابة</span>
+                      <select required [(ngModel)]="relation" #pRelation="ngModel" name="relation"
+                        id="relationDropDownList" class="form-select text-center" aria-label="Default select example">
+                        <option value="father">اب</option>
+                        <option value="mother">ام</option>
+                        <option value="husband">زوج</option>
+                        <option value="wife">زوجة</option>
+                        <option value="child">ابن - ابنة</option>
+                        <option value="sibling">اخ - اخت</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <!-- <label for="basic-url" class="form-label">عنوان حسابك الشخصي</label> -->
+                      <span class="input-group-text" id="cName">الاسم</span>
+                      <input type="text" [(ngModel)]="newCase.name" #pName="ngModel" name="cName" class="form-control"
+                        required aria-label="الاسم" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="phoneNumber">رقم الهاتف</span>
+                      <input type="text" [(ngModel)]="newCase.phoneNumber" #pPhone="ngModel" name="phoneNumber"
+                        class="form-control" required maxlength="11" minlength="11" aria-label="رقم الهاتف"
+                        aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="gender">النوع</span>
+                      <select [(ngModel)]="newCase.gender" #pgender="ngModel" name="gender"
+                        class="form-select form-select " required aria-label="النوع">
+                        <option selected>اختر النوع</option>
+                        <option value="MALE">ذكر</option>
+                        <option value="FEMALE">انثي</option>
+                      </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="code">الرقم القومي</span>
+                      <input type="text" [(ngModel)]="newCase.code" #pCode="ngModel" name="code" class="form-control"
+                        required maxlength="14" minlength="14" aria-label="الرقم القومي"
+                        aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="education">المرحلة التعليمية</span>
+                      <input type="text" [(ngModel)]="newCase.educationLevel" #pEducation="ngModel"
+                        name="educationLevel" class="form-control" aria-label="المرحلة التعليمية"
+                        aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="social">الحالة الاجتماعية</span>
+                      <input type="text" [(ngModel)]="newCase.socialStatus" #pSocial="ngModel" name="socialLevel"
+                        class="form-control" aria-label="الحالة الاجتماعية" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group  mb-3">
+                      <span class="input-group-text" id="address">العنوان</span>
+                      <input type="text" [(ngModel)]="newCase.address" #pAddress="ngModel" name="address"
+                        class="form-control" required aria-label="العنوان" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="dateOfBirth">تاريخ الميلاد</span>
+                      <input type="date" [(ngModel)]="newCase.dateOfBirth" #pDate="ngModel" name="dateOfBirth"
+                        class="form-control" required aria-label="تاريخ الميلاد" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="notes">ملحوظات</span>
+                      <textarea [(ngModel)]="newCase.note" #pNote="ngModel" name="note" id="note" rows="5" cols="80"
+                        class="form-control" aria-label="ملحوظات" aria-describedby="basic-addon1"></textarea>
+                    </div>
+                    <div class="input-group mb-3">
+
+                      <div *ngIf="pRelation.value === 'sibling' " class="mb-3 form-check">
+                        <input [(ngModel)]="sameFather" #pSameFather="ngModel" name="cSameFather" type="checkbox"
+                          class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">له نفس الاب ؟</label>
+                      </div>
+                      <div *ngIf="pRelation.value === 'sibling' " class="mb-3 form-check">
+                        <input [(ngModel)]="sameMother" #pSameMother="ngModel" name="cSameMother" type="checkbox"
+                          class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">له نفس الام ؟</label>
+                      </div>
+                      <div *ngIf="pRelation.value === 'child' && caseProfile.gender=== 'FEMALE'"
+                        class="mb-3 form-check">
+                        <input [(ngModel)]="sameHusband" #pSameHusband="ngModel" name="cSameHusband" type="checkbox"
+                          class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">الاب هو نفس الزوج ؟</label>
+                      </div>
+                      <div *ngIf="pRelation.value === 'child' && caseProfile.gender=== 'MALE'" class="mb-3 form-check">
+                        <input [(ngModel)]="sameWife" #pSameWife="ngModel" name="cSameWife" type="checkbox"
+                          class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">الام هي نفس الزوجة ؟</label>
+                      </div>
+                      <div *ngIf="pRelation.value === 'sibling' || pRelation.value === 'child' "
+                        class="mb-3 form-check">
+                        <input [(ngModel)]="sameSibling" #pSameSibling="ngModel" name="cSameSibling" type="checkbox"
+                          class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">له نفس الاخوة ؟</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              <button *ngIf="addNewPerson" type="button" class="btn btn-primary"
+                (click)="saveNewCaseWithRelation()">حفظ</button>
+              <button *ngIf="addExistPerson" type="button" class="btn btn-primary"
+                (click)="saveExistCaseWithRelation()">حفظ</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalCenteredScrollable2" tabindex="-1"
+        aria-labelledby="exampleModalCenteredScrollabl2Title" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content ">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+            </div>
+            <div class="modal-body" id="myGroup">
+              <div class="person-group">
+                <div id="multiCollapse1">
+                  <div class="input-group mb-3">
+                  </div>
+                  <div class="input-group mb-3">
+                    <input [(ngModel)]="campaignNeeded" #ccampaignNeeded="ngModel" name="campaignNeeded" type="search"
+                      class="form-control rounded" placeholder="ادخل اسم المبادرة" aria-label="Search"
+                      aria-describedby="search-addon" />
+                    <button (click)="getCampaignByName()" type="button" class="btn btn-outline-primary">بحث</button>
+                  </div>
+                  <div *ngIf="campaignByName!=null">
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+                      width="100%">
+                      <thead>
+                        <tr class="text-center">
+                          <th class="th-sm">التسلسل</th>
+                          <th class="th-sm">الاسم</th>
+                          <th class="th-sm">الوصف</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let campaign of campaignByName" class="text-center">
+                          <td class="col-md-1">{{campaign.id}}</td>
+                          <td class="col-md-3">{{campaign.name}}</td>
+                          <td class="col-md-5">{{campaign.description}}</td>
+                          <td class="col-md-1">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" (click)="addToCampaign(campaign.id)">اضافة</a></li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              <button *ngIf="addNewPerson" type="button" class="btn btn-primary"
+                (click)="saveNewCaseWithRelation()">حفظ</button>
+              <button *ngIf="addExistPerson" type="button" class="btn btn-primary"
+                (click)="saveExistCaseWithRelation()">حفظ</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</app-layout>
+<script>
+  var $myGroup = $('#myGroup');
+  $myGroup.on('show.bs.collapse', '.collapse', function () {
+    $myGroup.find('.collapse.in').collapse('hide');
+  });
+</script>

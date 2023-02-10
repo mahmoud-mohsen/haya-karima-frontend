@@ -1,0 +1,32 @@
+<app-layout>
+  <ng-container class="container-body">
+    <main class="col-md-12 col-lg-17 px-md-3">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">اضافة مبادرة جديد</h1>
+      </div>
+      <div>
+        <div class="bd-example">
+          <form>
+            <div class="input-group col-md-5 mb-3">
+              <span class="input-group-text " id="campaignName">الاسم</span>
+              <input type="text" [(ngModel)]="newCampaign.name" #pcampaignName="ngModel" name="campaignName" class="form-control"
+                required aria-label="الاسم" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-md-9 input-group mb-3">
+              <span class="input-group-text" id="campaignDescription">الوصف</span>
+              <textarea [(ngModel)]="newCampaign.description" #campaignDescription="ngModel" name="campaignDescription" id="note"
+                rows="5" cols="80" class="form-control" aria-label="الوصف" aria-describedby="basic-addon1"></textarea>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-3">
+                <button class="btn btn-primary btn-block" type="submit" (click)="saveCampaign()">حفظ المبادرة</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+  </ng-container>
+</app-layout>

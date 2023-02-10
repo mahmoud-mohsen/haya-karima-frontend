@@ -1,0 +1,81 @@
+<app-layout>
+  <ng-container class="container-body">
+
+    <main class="col-md-12 col-lg-17 px-md-3">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">المبادرات</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button [routerLink]="['/campaign/new']" type="button" class="btn btn-sm btn-outline-secondary">
+            اضافة مبادرة جديدة
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngIf="this.campaigns!=null" class="table-responsive">
+        <form class="d-flex" #searchForm="ngForm" (ngSubmit)="addFilter(searchForm.value)">
+          <div class="input-group mb-3">
+            <div class="col-2">
+              <select  ngModel name="key" id="relationDropDownList" class="form-select text-center"
+                aria-label="Default select example" >
+                <option value="" selected disabled>مفتاح البحث</option>
+                <option selected value="name">الاسم</option>
+                <option value="description">الوصف</option>
+              </select>
+            </div>
+            <div class="col-5">
+              <input ngModel name="value" class="form-control me-2" type="search" placeholder="القيمة" aria-label="بحث">
+            </div>
+            <div class="col-2">
+              <button class="btn btn-primary" type="submit">بـحـث</button>
+            </div>
+
+          </div>
+        </form>
+        <div class="input-group d-flex">
+          <div *ngFor="let item of filter|keyvalue" class="ml-3 mb-2 d-flex ">
+            <div class="rounded border border-dark input-group">
+              <p class="font-italic ">{{transalateText(item.key)}} : {{item.value}}</p>
+              <button (click)="removeFilter(item)" onclick="this.parentNode.remove(); return false;" type="button" class="btn-close"
+                aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+            <tr class="text-center">
+              <th class="th-sm">التسلسل</th>
+              <th class="th-sm">الاسم</th>
+              <th class="th-sm">تاريخ الانشاء</th>
+              <th class="th-sm">المضيف</th>
+              <th class="th-sm">الوصف</th>
+              <th class="th-sm"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center" *ngFor="let campaign of campaigns| paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: page,
+                totalItems: totalItems
+              }">
+              <td>{{campaign.id}}</td>
+              <td>{{campaign.name}}</td>
+              <td>{{campaign.creationDate | date}}</td>
+              <td>{{campaign.addedUser}}</td>
+              <td class="col-md-6">{{campaign.description}}</td>
+              <td><button (click)="openCampaignProfile(campaign.id)" class="btn btn-primary" type="submit">عرض</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          <pagination-controls class="pagi" responsive="true" (pageChange)="gty((page = $event))"></pagination-controls>
+        </div>
+      </div>
+    </main>
+
+  </ng-container>
+</app-layout>
+

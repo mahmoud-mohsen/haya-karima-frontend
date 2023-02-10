@@ -1,0 +1,26 @@
+<div class="text-center">
+<main class="form-signin">
+  <form>
+    <img class="mb-4" src="../../../assets/img/haya-karima.jpg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">تسجيل الدخول</h1>
+
+    <div class="form-floating">
+        <input name="email" [(ngModel)]="username" #generalSearchT="ngModel" type="text" class="form-control " placeholder="Username">
+      <label for="floatingInput">البريد الاكترونى</label>
+    </div>
+    <div class="form-floating">
+        <input name="pass" [(ngModel)]="password" #generalSearchT="ngModel" type="password" class="form-control " placeholder="Password">
+      <label for="floatingPassword">الرقم السري</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label hidden>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button (click)="login()" type="submit" class="w-100 btn btn-lg btn-primary" type="submit">تسجيل</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2023–2024</p>
+  </form>
+</main>
+
+</div>

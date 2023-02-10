@@ -1,0 +1,85 @@
+<app-layout>
+  <ng-container class="container-body">
+    <main class="col-md-12 col-lg-17 px-md-3">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">اضافة عميل جديدة</h1>
+      </div>
+      <div>
+        <div class="bd-example">
+          <form>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <!-- <label for="basic-url" class="form-label">عنوان حسابك الشخصي</label> -->
+                <span class="input-group-text col-md-3" id="name">الاسم</span>
+                <input type="text" [(ngModel)]="newCase.name" #pName="ngModel" name="name" class="form-control" required
+                  aria-label="الاسم" aria-describedby="basic-addon1">
+              </div>
+              <div class="col-md-6 mb-3">
+                <span class="input-group-text col-md-3" id="phoneNumber">رقم الهاتف</span>
+                <input type="text" [(ngModel)]="newCase.phoneNumber" #pPhone="ngModel" name="phoneNumber" class="form-control" required
+                  maxlength="11" minlength="11" aria-label="رقم الهاتف" aria-describedby="basic-addon1">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <span class="input-group-text col-md-3" id="gender">النوع</span>
+                <select [(ngModel)]="newCase.gender" #pgender="ngModel" name="gender" class="form-select form-select " required
+                  aria-label="النوع">
+                  <option selected>اختر النوع</option>
+                  <option value="MALE">ذكر</option>
+                  <option value="FEMALE">انثي</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <span class="input-group-text col-md-3" id="code">الرقم القومي</span>
+                <input type="text" [(ngModel)]="newCase.code" #pCode="ngModel" name="code" class="form-control" required
+                  maxlength="14" minlength="14" aria-label="الرقم القومي" aria-describedby="basic-addon1">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <span class="input-group-text col-md-3" id="education">المرحلة التعليمية</span>
+                <input type="text" [(ngModel)]="newCase.educationLevel" #pEducation="ngModel" name="educationLevel" class="form-control"
+                  aria-label="المرحلة التعليمية" aria-describedby="basic-addon1">
+              </div>
+              <div class="col-md-6 mb-3">
+                <span class="input-group-text col-md-3" id="social">الحالة الاجتماعية</span>
+                <input type="text" [(ngModel)]="newCase.socialStatus" #pSocial="ngModel" name="socialLevel" class="form-control"
+                  aria-label="الحالة الاجتماعية" aria-describedby="basic-addon1">
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="address">العنوان</span>
+                <input type="text" [(ngModel)]="newCase.address" #pAddress="ngModel" name="address" class="form-control" required
+                  aria-label="العنوان" aria-describedby="basic-addon1">
+              </div>
+              <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="dateOfBirth">تاريخ الميلاد</span>
+                <input type="date" [(ngModel)]="newCase.dateOfBirth" #pDate="ngModel" name="dateOfBirth" class="form-control" required
+                  aria-label="تاريخ الميلاد" aria-describedby="basic-addon1">
+              </div>
+              <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="notes">ملحوظات</span>
+                <textarea [(ngModel)]="newCase.note" #pNote="ngModel" name="note" id="note" rows="5" cols="80"
+                  class="form-control" aria-label="ملحوظات" aria-describedby="basic-addon1"></textarea>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" type="submit" (click)="savePerson()">حفظ العميل</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+  </ng-container>
+</app-layout>
