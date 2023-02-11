@@ -197,7 +197,7 @@
     background-color: #494848;
     height: 50px;
     top: 300px;
-    
+
 }
 
 .lass-di3 {
@@ -221,7 +221,7 @@
     font-weight: bold;
     float: right;
     text-align: right;
-    
+
 }
 
 .news-rid-box {
@@ -231,7 +231,7 @@
     font-weight: bold;
     float: right;
     text-align: right;
-    
+
 }
 
 
@@ -396,4 +396,10 @@ nav {direction: rtl;}
 
 .offer-img{
     margin-top: 40px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #22a99b;
+  border-color: #22a99b;
 }

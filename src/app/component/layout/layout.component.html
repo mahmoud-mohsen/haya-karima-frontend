@@ -1,65 +1,66 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>حياة كريمة</title>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>حياة كريمة</title>
 
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
+  </style>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+</head>
 
-  </head>
-  <body>
+<body>
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">حياة كريمة</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="عرض/إخفاء لوحة التنقل">
-    <span class="navbar-toggler-icon">//////</span>
-  </button>
-  <div hidden class="navbar-nav">
-    <div class="nav-item text-nowrap">
+  <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #22a99b;">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">حياة كريمة</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+      aria-label="عرض/إخفاء لوحة التنقل">
+    </button>
+    <div hidden class="navbar-nav">
+      <div class="nav-item text-nowrap">
         <a class="nav-link px-3" *ngIf="isAuthenticated()" routerLink="" (click)="logout()">تسجيل الخروج</a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column text-center">
-          <li class="nav-item">
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column text-center">
+            <li class="nav-item">
 
-            <a class="nav-link" aria-current="page" [routerLink]="['/cases']">
-              <span data-feather="home"></span>
-              العملاء
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/campaigns']">
-              <span data-feather="file"></span>
-              المبادرات
-            </a>
-          </li>
-          <!-- <li class="nav-item">
+              <a class="fw-bolder nav-link" aria-current="page" [routerLink]="['/cases']">
+                العملاء
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="fw-bolder nav-link" aria-current="page" [routerLink]="['/campaigns']">
+                المبادرات
+              </a>
+            </li>
+            <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="shopping-cart"></span>
               المنتجات
@@ -83,32 +84,39 @@
               التكاملات
             </a>
           </li> -->
-        </ul>
+          </ul>
 
-        <hr style="height:2px;border-width:0;color:rgb(26, 25, 25);background-color:rgb(36, 35, 35)">
+          <hr style="height:2px;border-width:0;color:rgb(26, 25, 25);background-color:rgb(36, 35, 35)">
 
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="" (click)="logout()">
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" (click)="logout()">
                 <span data-feather="file-text">تسجيل الخروج</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <ng-content select=".container-body">
-        </ng-content>
-      </div>
-    </main>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <ng-content select=".container-body">
+          </ng-content>
+        </div>
+      </main>
+    </div>
   </div>
-</div>
 
 
-    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" integrity="sha384-EbSscX4STvYAC/DxHse8z5gEDaNiKAIGW+EpfzYTfQrgIlHywXXrM9SUIZ0BlyfF" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha384-i+dHPTzZw7YVZOx9lbH5l6lP74sLRtMtwN2XjVqjf3uAGAREAF4LMIUDTWEVs4LI" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+    integrity="sha384-EbSscX4STvYAC/DxHse8z5gEDaNiKAIGW+EpfzYTfQrgIlHywXXrM9SUIZ0BlyfF"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+    integrity="sha384-i+dHPTzZw7YVZOx9lbH5l6lP74sLRtMtwN2XjVqjf3uAGAREAF4LMIUDTWEVs4LI"
+    crossorigin="anonymous"></script>
+  <script src="dashboard.js"></script>
+</body>
+
 </html>

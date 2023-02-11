@@ -1,1 +1,7 @@
 .collapse.in { min-height: 50px;border: 1px solid blue; }
+
+.btn-primary {
+  color: #fff;
+  background-color: #22a99b;
+  border-color: #22a99b;
+}

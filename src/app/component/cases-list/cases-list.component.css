@@ -252,9 +252,11 @@ color: #3c4142;
   border: 1px solid #e6e4e9;
   border-radius: 8px;
 }
-
-
-
+.btn-primary {
+  color: #fff;
+  background-color: #22a99b;
+  border-color: #22a99b;
+}
 
 
 
