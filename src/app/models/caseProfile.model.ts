@@ -10,6 +10,7 @@ export class CaseProfile {
     phoneNumber: String;
     address: String;
     note: String;
+    dead: Boolean;
     gender: String;
     dateOfBirth: number;
     age:number;

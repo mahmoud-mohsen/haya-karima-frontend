@@ -156,6 +156,14 @@
                 </div>
                 <hr>
                 <div class="row">
+                  <div class="mb-3 col-md-7 form-check form-switch">
+                    <input [disabled]="!editView" [(ngModel)]="caseProfile.dead" #cpDead="ngModel" name="caseDead" class="form-control"
+                      class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">هل الشخص متوفي ؟</label>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
                   <div class="col-sm-3">
                     <p class="mb-0">ملحوظات</p>
                   </div>
@@ -547,13 +555,15 @@
                         name="cSameFatherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">له نفس الاب ؟</label>
                     </div>
-                    <div *ngIf=" pRelationExistPerson!=null && pRelationExistPerson.value === 'mother' && addExistPerson"
+                    <div
+                      *ngIf=" pRelationExistPerson!=null && pRelationExistPerson.value === 'mother' && addExistPerson"
                       class="mb-3 form-check">
                       <input [(ngModel)]="sameFatherForExistPerson" #pSameFatherForExistPerson="ngModel"
                         name="cSameFatherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">الزوج هو الاب ؟</label>
                     </div>
-                    <div *ngIf="pRelationExistPerson!=null && pRelationExistPerson.value === 'father' && addExistPerson "
+                    <div
+                      *ngIf="pRelationExistPerson!=null && pRelationExistPerson.value === 'father' && addExistPerson "
                       class="mb-3 form-check">
                       <input [(ngModel)]="sameMotherForExistPerson" #pSameMotherForExistPerson="ngModel"
                         name="cSameMotherForExistPerson" type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -627,6 +637,13 @@
                   </div>
                 </div>
                 <div *ngIf="addNewPerson" id="multiCollapse2">
+
+                  <div *ngIf="errors.length!=0" class="alert alert-danger text-right" role="alert">
+                    <ul *ngFor="let error of errors">
+                      <li>{{error}}</li>
+                    </ul>
+                  </div>
+
                   <form>
                     <div class="input-group mb-3">
                       <span class="input-group-text" id="cRelation">صلة القرابة</span>

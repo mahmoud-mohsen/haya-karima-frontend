@@ -7,10 +7,14 @@
       </div>
       <div>
         <div class="bd-example">
+          <div *ngIf="errors.length!=0" class="alert alert-danger text-right" role="alert">
+            <ul *ngFor="let error of errors">
+              <li>{{error}}</li>
+            </ul>
+          </div>
           <form>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <!-- <label for="basic-url" class="form-label">عنوان حسابك الشخصي</label> -->
                 <span class="input-group-text col-md-3" id="name">الاسم</span>
                 <input type="text" [(ngModel)]="newCase.name" #pName="ngModel" name="name" class="form-control" required
                   aria-label="الاسم" aria-describedby="basic-addon1">
@@ -65,6 +69,11 @@
                 <input type="date" [(ngModel)]="newCase.dateOfBirth" #pDate="ngModel" name="dateOfBirth" class="form-control" required
                   aria-label="تاريخ الميلاد" aria-describedby="basic-addon1">
               </div>
+              <div class="mb-3 col-md-7 form-check form-switch">
+                <input [(ngModel)]="newCase.dead" #pDead="ngModel" name="dead" class="form-control" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">هل الشخص متوفي</label>
+              </div>
+
               <div class="col-md-6 input-group mb-3">
                 <span class="input-group-text" id="notes">ملحوظات</span>
                 <textarea [(ngModel)]="newCase.note" #pNote="ngModel" name="note" id="note" rows="5" cols="80"

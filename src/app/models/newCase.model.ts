@@ -9,5 +9,6 @@ export class NewCase {
      note: String;
      gender: String;
      dateOfBirth: Date;
+     dead:boolean;
 
 }

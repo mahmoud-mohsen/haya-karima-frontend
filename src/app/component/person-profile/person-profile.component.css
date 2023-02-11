@@ -5,3 +5,5 @@
   background-color: #22a99b;
   border-color: #22a99b;
 }
+
+ul, li { margin: 0; padding: 0; }

@@ -10,25 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCampaignComponent implements OnInit {
 
-  newCampaign: NewCampaign
+  newCampaign: NewCampaign;
+
+  errors: String[] = new Array();
+
   constructor(private backendService: BackendService, private router: Router) { }
 
   ngOnInit(): void {
-    this.newCampaign=new NewCampaign();
+    this.newCampaign = new NewCampaign();
   }
 
   saveCampaign() {
-    let url = `campaign`;
-    this.backendService.post(this.newCampaign,url).subscribe((response: any) => {
-      if(response.id!=null){
-        this.openCampaignProfile(response.id);
-      }
-    });
+    this.errors = new Array();
+    if (this.newCampaign.name == null) {
+      this.errors.push("يجب ادخال الاسم");
+    }
+    if (this.errors.length == 0) {
+      let url = `campaign`;
+      this.backendService.post(this.newCampaign, url).subscribe((response: any) => {
+        if (response.id != null) {
+          this.openCampaignProfile(response.id);
+        }
+      });
+    }
   }
 
 
-  openCampaignProfile(id:Number){
-    this.router.navigate(['/campaign/profile',id]);
+  openCampaignProfile(id: Number) {
+    this.router.navigate(['/campaign/profile', id]);
 
   }
 }

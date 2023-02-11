@@ -7,16 +7,22 @@
       </div>
       <div>
         <div class="bd-example">
+          <div *ngIf="errors.length!=0" class="alert alert-danger text-right" role="alert">
+            <ul *ngFor="let error of errors">
+              <li>{{error}}</li>
+            </ul>
+          </div>
           <form>
             <div class="input-group col-md-5 mb-3">
               <span class="input-group-text " id="campaignName">الاسم</span>
-              <input type="text" [(ngModel)]="newCampaign.name" #pcampaignName="ngModel" name="campaignName" class="form-control"
-                required aria-label="الاسم" aria-describedby="basic-addon1">
+              <input type="text" [(ngModel)]="newCampaign.name" #pcampaignName="ngModel" name="campaignName"
+                class="form-control" required aria-label="الاسم" aria-describedby="basic-addon1">
             </div>
             <div class="col-md-9 input-group mb-3">
               <span class="input-group-text" id="campaignDescription">الوصف</span>
-              <textarea [(ngModel)]="newCampaign.description" #campaignDescription="ngModel" name="campaignDescription" id="note"
-                rows="5" cols="80" class="form-control" aria-label="الوصف" aria-describedby="basic-addon1"></textarea>
+              <textarea [(ngModel)]="newCampaign.description" #campaignDescription="ngModel" name="campaignDescription"
+                id="note" rows="5" cols="80" class="form-control" aria-label="الوصف"
+                aria-describedby="basic-addon1"></textarea>
             </div>
             <div class="row d-flex justify-content-center">
               <div class="col-md-3">

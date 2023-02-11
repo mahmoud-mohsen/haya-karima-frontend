@@ -50,6 +50,8 @@ export class PersonProfileComponent implements OnInit {
   addSupport: AddSupport;
 
   supportNote: String;
+
+  errors: String[]=new Array();
   constructor(private activeRouter: ActivatedRoute, private backendService: BackendService, private router: Router) {
     this.familyCount = 0;
     this.campaignCount = 0;
@@ -134,7 +136,34 @@ export class PersonProfileComponent implements OnInit {
 
   saveNewCaseWithRelation() {
 
-    let url = `person/${this.caseProfile.id}/${this.relation}`;
+    this.errors=new Array();
+    if(this.newCase.name==null){
+      this.errors.push("يجب ادخال الاسم");
+    }
+    if(this.newCase.code==null || this.newCase.code.length!=14){
+      this.errors.push("ادخل رقم قومي صحيح");
+    }
+
+    if(this.newCase.phoneNumber==null || !(this.newCase.phoneNumber.length==11 || this.newCase.phoneNumber.length==10) ){
+      this.errors.push("ادخل رقم هاتف صحيح");
+    }
+
+    if(this.newCase.address==null ){
+      this.errors.push("يجب ادخال العنوان");
+    }
+
+    if(this.newCase.dateOfBirth==null ){
+      this.errors.push("يجب ادخال تاريخ الميلاد");
+    }
+
+    if(this.newCase.gender==null){
+      this.errors.push("يجب ادخال النوع");
+    }
+
+
+
+    if(this.errors.length==0){
+      let url = `person/${this.caseProfile.id}/${this.relation}`;
     let params = {};
     if (this.relation == 'child') {
       params = { "sameWife": this.sameWife, "sameHusband": this.sameHusband, "sameSibling": this.sameSibling };
@@ -146,6 +175,7 @@ export class PersonProfileComponent implements OnInit {
     this.backendService.post(this.newCase, url, params).subscribe(() => {
       this.openCaseProfile(this.caseProfile.id);
     });
+  }
   }
 
   saveExistCaseWithRelation() {
