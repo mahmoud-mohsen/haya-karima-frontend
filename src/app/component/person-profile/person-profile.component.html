@@ -11,17 +11,17 @@
                 الخيارات
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalCenteredScrollable">اضافة فرد عائلة</a></li>
+                <li><button class="dropdown-item" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalCenteredScrollable">اضافة فرد عائلة</button></li>
 
-                <li><a class="dropdown-item" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalCenteredScrollable2">اضافة الى مبادرة</a></li>
+                <li><button class="dropdown-item" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalCenteredScrollable2">اضافة الى مبادرة</button></li>
 
-                <li><a class="dropdown-item" (click)="showEdit()">تعديل</a></li>
+                <li><button class="dropdown-item" (click)="showEdit()">تعديل</button></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item bg-danger" (click)="deleteCase()">حذف</a></li>
+                <li><button class="dropdown-item bg-danger" (click)="deleteCase()">حذف</button></li>
               </ul>
             </div>
           </div>
@@ -651,9 +651,9 @@
                         id="relationDropDownList" class="form-select text-center" aria-label="Default select example">
                         <option value="father">اب</option>
                         <option value="mother">ام</option>
-                        <option value="husband">زوج</option>
-                        <option value="wife">زوجة</option>
-                        <option value="child">ابن - ابنة</option>
+                        <option *ngIf="caseProfile && caseProfile.gender=='FEMALE'" value="husband">زوج</option>
+                        <option *ngIf="caseProfile && caseProfile.gender=='MALE'" value="wife">زوجة</option>
+                          <option value="child">ابن - ابنة</option>
                         <option value="sibling">اخ - اخت</option>
                       </select>
                     </div>

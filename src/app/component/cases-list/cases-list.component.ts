@@ -140,9 +140,9 @@ export class CasesListComponent implements OnInit {
       a.setAttribute("style", "display: none");
       a.href = url;
       if (this.excelFileName == null) {
-        this.excelFileName = date;
+        this.excelFileName = "excel-" +date;
       }
-      a.download = "excel_" + date + ".xlsx";
+      a.download = this.excelFileName + ".xlsx";
       a.click();
       window.URL.revokeObjectURL(url);
       a.remove();
