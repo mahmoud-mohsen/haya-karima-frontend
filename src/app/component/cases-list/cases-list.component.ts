@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CasesFilterModel } from '../../models/casesFilter.model';
 import { BackendService } from 'src/app/services/backend.service';
 import { Component, OnInit } from '@angular/core';
-import * as Excel from "exceljs";
+import * as Excel from "exceljs/dist/exceljs.min.js";
 import { formatDate } from '@angular/common';
 
 
