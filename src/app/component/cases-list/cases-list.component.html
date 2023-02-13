@@ -14,25 +14,43 @@
 
 
       <div *ngIf="this.cases!=null" class="table-responsive">
-        <form class="d-flex" #searchForm="ngForm" (ngSubmit)="addFilter(searchForm.value)">
+        <form class="d-flex">
           <div class="input-group mb-3">
             <div class="col-2">
-              <select  ngModel name="key" id="relationDropDownList" class="form-select text-center"
-                aria-label="Default select example" >
+              <select [(ngModel)]="searchKey" #key="ngModel" name="key" id="relationDropDownList"
+                class="form-select text-center" aria-label="Default select example">
                 <option value="" selected disabled>مفتاح البحث</option>
                 <option selected value="name">الاسم</option>
                 <option value="code">الرقم القومي</option>
                 <option value="address">العنوان</option>
                 <option value="phoneNumber">رقم الهاتف</option>
-                <!-- <option value="gender">النوع</option> -->
-                <!-- <option value="age">العمر</option> -->
+                <option value="gender">النوع</option>
+                <option value="noFather">يتيم الاب</option>
+                <option value="noMother">يتيم الام</option>
               </select>
             </div>
-            <div class="col-5">
-              <input ngModel name="value" class="form-control me-2" type="search" placeholder="القيمة" aria-label="بحث">
+
+            <div *ngIf="key.value!=null" class="col-5">
+              <input *ngIf="key.value==='name'||key.value==='code'||key.value==='address'||key.value==='phoneNumber'"
+                [(ngModel)]="searchValue" #value="ngModel" name="value" class="form-control me-2" type="search"
+                placeholder="القيمة" aria-label="بحث">
+
+              <select *ngIf="key.value==='gender'"
+                [(ngModel)]="searchValue" #selectValue="ngModel" name="selectValue" id="relationDropDownList"
+                class="form-select text-center" aria-label="Default select example">
+                <option selected value="MALE">ذكر</option>
+                <option value="FEMALE">انثي</option>
+              </select>
+
+              <select *ngIf="key.value==='noFather'||key.value==='noMother'"
+                [(ngModel)]="searchValue" #selectValue="ngModel" name="selectValue" id="relationDropDownList"
+                class="form-select text-center" aria-label="Default select example">
+                <option selected value="true">نعم</option>
+                <option value="false">لا</option>
+              </select>
             </div>
             <div class="col-2">
-              <button class="btn btn-primary" type="submit">بـحـث</button>
+              <button (click)="addFilter()" class="btn btn-primary" type="submit">بـحـث</button>
             </div>
 
           </div>
@@ -40,9 +58,9 @@
         <div class="input-group d-flex">
           <div *ngFor="let item of filter|keyvalue" class="ml-3 mb-2 d-flex ">
             <div class="rounded border border-dark input-group">
-              <p class="font-italic ">{{transalateText(item.key)}} : {{item.value}}</p>
-              <button (click)="removeFilter(item)" onclick="this.parentNode.remove(); return false;" type="button" class="btn-close"
-                aria-label="Close"></button>
+              <p class="font-italic ">{{transalateText(item.key)}} : {{transalateText(item.value)}}</p>
+              <button (click)="removeFilter(item)" onclick="this.parentNode.remove(); return false;" type="button"
+                class="btn-close" aria-label="Close"></button>
             </div>
           </div>
         </div>

@@ -19,6 +19,9 @@ export class CasesListComponent implements OnInit {
   filterParma :Map<String, String> = new Map<String, String>();
   filter :Map<String, String> = new Map<String, String>();
   transale :Map<String, String> = new Map<String, String>();
+
+  searchKey:string;
+  searchValue:string;
   constructor(private backendService: BackendService,private router: Router) { }
 
   ngOnInit(): void {
@@ -27,6 +30,12 @@ export class CasesListComponent implements OnInit {
     this.transale.set("code","الرقم القومي");
     this.transale.set("phoneNumber","رقم الهاتف");
     this.transale.set("gender","النوع");
+    this.transale.set("MALE","`ذكر`");
+    this.transale.set("FEMALE","انثي");
+    this.transale.set("true","نعم");
+    this.transale.set("false","لا");
+    this.transale.set("noFather","يتيم الاب");
+    this.transale.set("noMother","يتيم الام");
 
     this.gty(this.page);
   }
@@ -51,11 +60,17 @@ export class CasesListComponent implements OnInit {
     })
   }
 
-  addFilter(data) {
-    if(data.key && data.value){
-      this.filterParma[data.key] = data.value;
-      this.filter.set(data.key, data.value);
+  addFilter() {
+    if(this.searchKey!=null && this.searchKey.length!=0 && this.searchValue!=null && this.searchValue.length!=0 ){
+      this.filterParma[this.searchKey] = this.searchValue;
+      this.filter.set(this.searchKey, this.searchValue);
       this.filterTable();
+      this.searchKey=null;
+      this.searchValue=null;
+
+      console.log(this.filterParma);
+      console.log(this.filter);
+
     }
    }
 
@@ -72,7 +87,12 @@ export class CasesListComponent implements OnInit {
 
 
   transalateText(key){
-    return this.transale.get(key);
+    if(this.transale.get(key)!=null){
+      return this.transale.get(key);
+    }else{
+      return key;
+    }
+
   }
 
 }

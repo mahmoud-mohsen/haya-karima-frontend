@@ -709,6 +709,12 @@
                       <input type="date" [(ngModel)]="newCase.dateOfBirth" #pDate="ngModel" name="dateOfBirth"
                         class="form-control" required aria-label="تاريخ الميلاد" aria-describedby="basic-addon1">
                     </div>
+
+                    <div class="mb-3 col-md-7 form-check form-switch">
+                      <input [(ngModel)]="newCase.dead" #pDead="ngModel" name="dead" class="form-control" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                      <label class="form-check-label" for="flexSwitchCheckChecked">هل الشخص متوفي</label>
+                    </div>
+
                     <div class="input-group mb-3">
                       <span class="input-group-text" id="notes">ملحوظات</span>
                       <textarea [(ngModel)]="newCase.note" #pNote="ngModel" name="note" id="note" rows="5" cols="80"
