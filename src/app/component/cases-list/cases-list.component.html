@@ -5,10 +5,29 @@
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">العملاء</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <button [routerLink]="['/case/new']" type="button" class="btn btn-sm btn-outline-secondary">
-            اضافة عميل جديد
+
+        <div class="dropdown mb-3">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            الخيارات
           </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable"
+                [routerLink]="['/case/new']">اضافة عميل جديد</button></li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <div class="input-group-prepend">
+                <button (click)="downloadExcel()" class="dropdown-item" data-bs-toggle="modal"
+                  data-bs-target="#exampleModalCenteredScrollable">عمل ملف excel</button>
+              </div>
+              <input [(ngModel)]="excelFileName" #eFileName="ngModel" name="filename" class="form-control me-2"
+                type="text" placeholder="ادخل اسم الملف">
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -25,6 +44,7 @@
                 <option value="address">العنوان</option>
                 <option value="phoneNumber">رقم الهاتف</option>
                 <option value="gender">النوع</option>
+                <option value="age">العمر</option>
                 <option value="noFather">يتيم الاب</option>
                 <option value="noMother">يتيم الام</option>
               </select>
@@ -35,16 +55,18 @@
                 [(ngModel)]="searchValue" #value="ngModel" name="value" class="form-control me-2" type="search"
                 placeholder="القيمة" aria-label="بحث">
 
-              <select *ngIf="key.value==='gender'"
-                [(ngModel)]="searchValue" #selectValue="ngModel" name="selectValue" id="relationDropDownList"
-                class="form-select text-center" aria-label="Default select example">
+              <input *ngIf="key.value==='age'" [(ngModel)]="searchValue" #value="ngModel" name="value"
+                class="form-control me-2" type="number" placeholder="القيمة" aria-label="بحث">
+
+              <select *ngIf="key.value==='gender'" [(ngModel)]="searchValue" #selectValue="ngModel" name="selectValue"
+                id="relationDropDownList" class="form-select text-center" aria-label="Default select example">
                 <option selected value="MALE">ذكر</option>
                 <option value="FEMALE">انثي</option>
               </select>
 
-              <select *ngIf="key.value==='noFather'||key.value==='noMother'"
-                [(ngModel)]="searchValue" #selectValue="ngModel" name="selectValue" id="relationDropDownList"
-                class="form-select text-center" aria-label="Default select example">
+              <select *ngIf="key.value==='noFather'||key.value==='noMother'" [(ngModel)]="searchValue"
+                #selectValue="ngModel" name="selectValue" id="relationDropDownList" class="form-select text-center"
+                aria-label="Default select example">
                 <option selected value="true">نعم</option>
                 <option value="false">لا</option>
               </select>
@@ -71,6 +93,8 @@
               <th class="th-sm">الاسم</th>
               <th class="th-sm">الرقم القومي</th>
               <th class="th-sm">العمر</th>
+              <th class="th-sm">تاريخ الميلاد</th>
+              <th class="th-sm">النوع</th>
               <th class="th-sm">رقم الهاتف</th>
               <th class="th-sm">العنوان</th>
               <th class="th-sm"></th>
@@ -87,6 +111,8 @@
               <td>{{case.name}}</td>
               <td>{{case.code}}</td>
               <td>{{getAge(case.dateOfBirth)}}</td>
+              <td>{{case.dateOfBirth|date:"dd/MM/yyyy"}}</td>
+              <td>{{transalateText(case.gender)}}</td>
               <td>{{case.phoneNumber}}</td>
               <td>{{case.address}}</td>
               <td><button (click)="openCaseProfile(case.id)" class="btn btn-primary" type="submit">عرض</button></td>
